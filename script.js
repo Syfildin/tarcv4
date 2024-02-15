@@ -77,11 +77,14 @@ function displayScene(scene) {
         button.addEventListener("click", () => displayScene(choice.next));
         if (choice.text === "I cherish our friendship") {
             button.addEventListener("mouseover", () => {
-                const newX = Math.random()
-button.addEventListener("mouseover", () => {
-    const newX = Math.random() * window.innerWidth;
-    const newY = Math.random() * window.innerHeight;
-    button.style.position = "absolute";
-    button.style.left = newX + "px";
-    button.style.top = newY + "px";
-});
+                const newX = Math.random() * (window.innerWidth - button.offsetWidth);
+                const newY = Math.random() * (window.innerHeight - button.offsetHeight);
+                button.style.position = "absolute";
+                button.style.left = newX + "px";
+                button.style.top = newY + "px";
+            });
+        }
+        choicesContainer.appendChild(button);
+    });
+}
+
