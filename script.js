@@ -1,64 +1,82 @@
 const story = {
     start: {
-        text: "Raccoon Tarc sets out to find her Valentine. Where does she start?",
+        text: "Raccoon Tarc embarks on a whimsical journey, one where she has to have an adventure, but make choices -- almost as if she is choosing her own adventure. As she reaches a crossroads, she must decide where to go...",
+        img: "images/start.jpg",
         choices: [
-            {text: "Explore the forest", next: "forest"},
-            {text: "Visit the town", next: "town"}
+            {text: "Venture deeper into the forest", next: "forest"},
+            {text: "Head towards the twinkling town", next: "town"}
         ]
     },
     forest: {
-        text: "Raccoon Tarc finds The Loose Man reading about Mongolian mythology. 'Fascinating, isn't it?' he muses. 'But I can only think of 10 things at a time, and this book takes up all my brain space!'",
+        text: "The forest, almost guiding Raccoon Tarc along the path, winds and reveals a beautiful clearing with a book in the center.",
+        img: "images/forest.jpg",
         choices: [
-            {text: "Laugh and continue", next: "lake"}
+            {text: "Examine the book", next: "book"},
+            {text: "Continue on her path", next: "lake"}
         ]
     },
     town: {
-        text: "In the town, a wise owl tells Raccoon Tarc that The Loose Man was last seen by the lake, reading a hefty tome.",
+        text: "The town sparkles under the moonlight, its streets bustling with festivities of Valentines day. Raccoon Tarc, using her nocturnal vision, spies a wizened looking fellow, who beckons her over.",
+        img: "images/town.jpg",
         choices: [
-            {text: "Head to the lake", next: "lake"}
+            {text: "Approach the figure", next: "figure"},
+            {text: "Explore the town square", next: "square"}
+        ]
+    },
+    book: {
+        text: "The book whispers tales of a legendary figure known as "The Loose Man", a wanderer of realms, whose heart seeks a true companion. Raccoon Tarc feels a strange connection.",
+        img: "images/book.jpg",
+        choices: [
+            {text: "Seek out The Loose Man", next: "lake"}
+        ]
+    },
+    figure: {
+        text: "The fellow, an emissary of a more powerful fellow gifts Tarc a luminescent flower. 'The Loose Man awaits by the mirror lake,' they whisper, teleporting away.",
+        img: "images/figure.jpg",
+        choices: [
+            {text: "Go to the mirror lake", next: "lake"}
+        ]
+    },
+    square: {
+        text: "The town square, filled with dancing animals of all kinds, is almost alive with joy. Amidst the laughter, a bard turtle sings of a love lost by the lake, stirring Raccoon Tarc's heart.",
+        img: "images/square.jpg",
+        choices: [
+            {text: "Follow the song's trail", next: "lake"}
         ]
     },
     lake: {
-        text: "At the lake, The Loose Man, now free from his book, turns to Raccoon Tarc with a hopeful smile. 'Raccoon Tarc, will you be my Valentine?'",
+        text: "As Raccoon Tarc approaches the lake, she spots The Loose Man reading about Mongolian mythology. 'Fascinating, isn't it?' he muses. 'But I can only think of 10 things at a time, and this book takes up all my brain space!' When he spots Raccoon Tarc, he is befuddled by her beauty. 'Will you be my Valentine!' he cries out, astonished that such a powerful Procyon would visit him.",
+        img: "images/lake.jpg",
         choices: [
-            {text: "Yes", next: "endYes"},
-            {text: "No", next: "endNo", id: "noButton"}
+            {text: "Yes, with all my heart", next: "endYes"},
+            {text: "I cherish our friendship", next: "endNo"}
         ]
     },
     endYes: {
-        text: "'Hooray!' exclaims The Loose Man. 'Let's make every day an adventure!'",
+        text: "'Hooray!' exclaims The Loose Man. 'Let's make every day an adventure! A Choose Your Own Adventure!'",
+        img: "images/endYes.jpg",
         choices: []
     },
     endNo: {
-        text: "'Oh, that's okay,' The Loose Man says, 'I'm glad we had this adventure together.'",
+        text: "Though not as lovers, Tarc and The Loose Man vowed to wander the realms together, their bond unbreakable, their adventures endless.",
+        img: "images/endNo.jpg",
         choices: []
     }
 };
 
 function displayScene(scene) {
     const sceneText = document.getElementById("story");
+    const sceneImage = document.getElementById("scene-image");
     sceneText.innerHTML = `<p>${story[scene].text}</p>`;
-
+    sceneImage.src = story[scene].img;
     const choicesContainer = document.getElementById("choices");
     choicesContainer.innerHTML = "";
-
     story[scene].choices.forEach(choice => {
         const button = document.createElement("button");
         button.innerText = choice.text;
-        button.id = choice.id || "";
         button.addEventListener("click", () => displayScene(choice.next));
         choicesContainer.appendChild(button);
     });
-
-    if (scene === "lake") {
-        document.getElementById("noButton").addEventListener("mouseover", function(event) {
-            const newX = Math.random() * (window.innerWidth - this.clientWidth);
-            const newY = Math.random() * (window.innerHeight - this.clientHeight);
-            this.style.position = "absolute";
-            this.style.left = `${newX}px`;
-            this.style.top = `${newY}px`;
-        });
-    }
 }
 
 document.addEventListener("DOMContentLoaded", () => displayScene('start'));
