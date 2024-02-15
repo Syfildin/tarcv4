@@ -24,7 +24,7 @@ const story = {
         ]
     },
     book: {
-        text: "The book whispers tales of a legendary figure known as "The Loose Man", a wanderer of realms, whose heart seeks a true companion. Raccoon Tarc feels a strange connection.",
+        text: "The book whispers tales of a legendary figure known as 'The Loose Man', a wanderer of realms, whose heart seeks a true companion. Raccoon Tarc feels a strange connection.",
         img: "images/book.jpg.jpg",
         choices: [
             {text: "Seek out The Loose Man", next: "lake"}
