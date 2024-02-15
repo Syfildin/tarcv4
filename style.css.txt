@@ -1,0 +1,33 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #ffe0f0; /* Soft pink */
+    color: #2a1a2f; /* Deep purple */
+    font-family: 'Indie Flower', cursive;
+}
+
+#game-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 3px solid #ff99aa; /* Light red */
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff0f5; /* Lavender blush */
+}
+
+#choices button {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 2px solid #2a1a2f; /* Deep purple */
+    background-color: #ffccd5; /* Lighter pink */
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#choices button:hover {
+    background-color: #f8a8c4; /* Slightly darker pink */
+    transform: scale(1.1);
+}
