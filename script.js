@@ -49,7 +49,7 @@ const story = {
         img: "images/lake.jpg.jpg",
         choices: [
             {text: "Yes, with all my heart", next: "endYes"},
-            {text: "I cherish our friendship", next: "endNo"}
+            {text: "I cherish our Snapchat AI approved friendship", next: "endNo"}
         ]
     },
     endYes: {
@@ -62,26 +62,28 @@ const story = {
     }
 };
 
-    function displayScene(scene) {
-        const sceneText = document.getElementById("story");
-        const sceneImage = document.getElementById("scene-image");
-        sceneText.innerHTML = `<p>${story[scene].text}</p>`;
-        sceneImage.src = story[scene].img;
-        const choicesContainer = document.getElementById("choices");
-        choicesContainer.innerHTML = "";
-        story[scene].choices.forEach(choice => {
-            const button = document.createElement("button");
-            button.innerText = choice.text;
-            if (choice.text === "I cherish our friendship") {
-                button.style.position = "fixed";
-                button.addEventListener("mousemove", (event) => {
-                    button.style.left = (event.clientX + 20) + "px";
-                    button.style.top = (event.clientY + 20) + "px";
-                });
-            }
-            button.addEventListener("click", () => displayScene(choice.next));
-            choicesContainer.appendChild(button);
-        });
-    }
+function displayScene(scene) {
+    const sceneText = document.getElementById("story");
+    const sceneImage = document.getElementById("scene-image");
+    sceneText.innerHTML = `<p>${story[scene].text}</p>`;
+    sceneImage.src = story[scene].img;
+    const choicesContainer = document.getElementById("choices");
+    choicesContainer.innerHTML = "";
+    story[scene].choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.innerText = choice.text;
+        if (choice.text === "I cherish our Snapchat AI approved friendship") {
+            button.onmouseenter = (e) => {
+                const newX = Math.random() * (window.innerWidth - button.offsetWidth);
+                const newY = Math.random() * (window.innerHeight - button.offsetHeight);
+                button.style.position = 'absolute';
+                button.style.left = `${newX}px`;
+                button.style.top = `${newY}px`;
+            };
+        }
+        button.addEventListener("click", () => displayScene(choice.next));
+        choicesContainer.appendChild(button);
+    });
+}
 
-    document.addEventListener("DOMContentLoaded", () => displayScene('start'));
+document.addEventListener("DOMContentLoaded", () => displayScene('start'));
