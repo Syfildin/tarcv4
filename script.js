@@ -54,10 +54,12 @@ const story = {
     },
     endYes: {
         text: "'Hooray!' exclaims The Loose Man. 'Let's make every day an adventure! A Choose Your Own Adventure!'",
+        img: "", // Assuming no image here; add path if necessary
         choices: []
     },
     endNo: {
         text: "Though not as lovers, Tarc and The Loose Man vowed to wander the realms together, their bond unbreakable, their adventures endless.",
+        img: "", // Assuming no image here; add path if necessary
         choices: []
     }
 };
@@ -73,8 +75,13 @@ function displayScene(scene) {
         const button = document.createElement("button");
         button.innerText = choice.text;
         button.addEventListener("click", () => displayScene(choice.next));
-        choicesContainer.appendChild(button);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => displayScene('start'));
+        if (choice.text === "I cherish our friendship") {
+            button.addEventListener("mouseover", () => {
+                const newX = Math.random()
+button.addEventListener("mouseover", () => {
+    const newX = Math.random() * window.innerWidth;
+    const newY = Math.random() * window.innerHeight;
+    button.style.position = "absolute";
+    button.style.left = newX + "px";
+    button.style.top = newY + "px";
+});
